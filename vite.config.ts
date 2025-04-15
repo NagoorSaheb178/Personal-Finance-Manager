@@ -20,19 +20,19 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      "@": path.resolve(__dirname, "client", "src"),
+      "@shared": path.resolve(__dirname, "shared"),
+      "@assets": path.resolve(__dirname, "attached_assets"),
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
+  root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        client: path.resolve(import.meta.dirname, "client", "index.html"), // Ensure this path matches your project structure
-        server: path.resolve(import.meta.dirname, "server", "index.ts") // Ensure this path matches your project structure
+        client: path.resolve(__dirname, "client", "index.html"), // Use __dirname for relative path
+        server: path.resolve(__dirname, "server", "index.ts") // Use __dirname for relative path
       },
       external: [] // Ensure no conflicting external entries
     }
