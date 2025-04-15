@@ -30,9 +30,11 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     rollupOptions: {
-      input: path.resolve(import.meta.dirname, "client", "index.html"),
-      external: [], // Keep empty for client-side build
-      preserveEntrySignatures: 'strict' // Add this for better SSR compatibility
+      input: {
+        client: path.resolve(import.meta.dirname, "client", "index.html"),
+        server: path.resolve(import.meta.dirname, "server", "index.ts") // Include server/index.ts as an entry point
+      },
+      external: [] // Ensure no conflicting external entries
     }
   },
   ssr: {
@@ -42,7 +44,6 @@ export default defineConfig({
       '@assets',
       /^server\//,
       /^\..*\/server\//,
-      'server/index.ts',
       'react', // Add React to ensure it's bundled
       'react-dom' // Add ReactDOM to ensure it's bundled
     ]
