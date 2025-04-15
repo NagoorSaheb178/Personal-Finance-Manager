@@ -31,8 +31,8 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        client: path.resolve(import.meta.dirname, "client", "index.html"),
-        server: path.resolve(import.meta.dirname, "server", "index.ts") // Include server/index.ts as an entry point
+        client: path.resolve(import.meta.dirname, "client", "index.html"), // Ensure this path matches your project structure
+        server: path.resolve(import.meta.dirname, "server", "index.ts") // Ensure this path matches your project structure
       },
       external: [] // Ensure no conflicting external entries
     }
