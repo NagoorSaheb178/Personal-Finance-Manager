@@ -25,12 +25,13 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  root: path.resolve(import.meta.dirname),
+  root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     rollupOptions: {
-      input: path.resolve(import.meta.dirname, "client", "index.html")
+      input: path.resolve(import.meta.dirname, "client", "index.html"),
+      external: ['/src/main.tsx']  // Add this to explicitly externalize the entry
     }
   },
   ssr: {
