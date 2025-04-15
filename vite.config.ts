@@ -25,9 +25,21 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
+  root: path.resolve(import.meta.dirname),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      input: path.resolve(import.meta.dirname, "client", "index.html")
+    }
+  },
+  ssr: {
+    target: 'node',
+    noExternal: [
+      '@shared',
+      '@assets',
+      /^server\//,
+      /^\..*\/server\//
+    ]
   },
 });
